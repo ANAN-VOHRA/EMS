@@ -52,28 +52,32 @@ const Employees = () => {
       </div>
 
       {/* SEARCH */}
-      <div className="flex flex-col sm:flex-row gap-4">
-        <div className="relative flex-1">
-          <Search className="absolute left-3 top-3 text-slate-400" size={18} />
-          <input
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            placeholder="Search employees..."
-            className="w-full pl-10 py-3 rounded-lg border bg-white"
-          />
-        </div>
+    <div className="grid grid-cols-4 gap-4 w-full">
+  
+  {/* Search - takes 3 parts */}
+  <div className="col-span-3">
+    <input
+      type="text"
+      placeholder="Search employee..."
+      className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-300"
+      value={search}
+      onChange={(e) => setSearch(e.target.value)}
+    />
+  </div>
 
-        <select
-          value={selectDept}
-          onChange={(e) => setDept(e.target.value)}
-          className="px-4 py-3 rounded-lg border bg-white"
-        >
-          <option value="">All Departments</option>
-          {DEPARTMENTS.map((i) => (
-            <option key={i}>{i}</option>
-          ))}
-        </select>
-      </div>
+  {/* Department Filter - takes 1 part */}
+  <div className="col-span-1">
+    <select className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-300">
+      <option value="">All Departments</option>
+      {DEPARTMENTS.map((dept, idx) => (
+        <option key={idx} value={dept}>
+          {dept}
+        </option>
+      ))}
+    </select>
+  </div>
+
+</div>
 
       {/* GRID */}
       {loading ? (
